@@ -5,7 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import requests
 import pandas as pd
 
-
+#
 def scrape():
     # Set up Splinter
     executable_path = {'executable_path': ChromeDriverManager().install()}

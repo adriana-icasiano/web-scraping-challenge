@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
 mongo = PyMongo(app)
 mars_db_collection = mongo.db.scraped_information
-
+#
 # Or set inline
 # mongo = PyMongo(app, uri="mongodb://localhost:27017/phone_app")
 
