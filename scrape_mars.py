@@ -1,5 +1,5 @@
 from splinter import Browser
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup
 import time
 from webdriver_manager.chrome import ChromeDriverManager
 import requests
@@ -26,7 +26,7 @@ def scrape():
 
     news = {"headline":[],"paragraph":[]}
         
-    for result in results:
+    for result in results[:1]:
     
         headline = result.find('div', class_='content_title').text
         paragraph = result.find('div', class_='article_teaser_body').text
@@ -35,10 +35,6 @@ def scrape():
         news['headline'].append(headline)
         news['paragraph'].append(paragraph)
     
-    # Store data in variables
-    news_title = news['headline'][0]
-    news_p = news['paragraph'][0]
-
     #Get the featured image
     url = 'https://spaceimages-mars.com'
     browser.visit(url)
@@ -59,7 +55,7 @@ def scrape():
 
     # Create dataframe from table
     df = tables[0]
-    df.head()
+  
     new_header = df.iloc[0]
     df = df[1:]
     df.columns = new_header
@@ -67,8 +63,36 @@ def scrape():
     # Convert dataframe to html table, and store as variable
     html_table = df.to_html()
 
-    # Quit the browser after scraping
+
+    url = 'https://marshemispheres.com/'
+    browser.visit(url)
+    
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    
+    collapsible = soup.find('div',class_="collapsible")
+    hemisphere_image_urls = []
+
+    for i in range(0,4):
+    
+        hemi_dict = {}
+        hemi_dict['title'] = collapsible.find_all("h3")[i].text
+        html_link = 'https://marshemispheres.com/'+str(collapsible.find_all('a', class_="itemLink product-item")[i*2]['href'])
+        browser.visit(html_link)
+        hemi_soup = BeautifulSoup(browser.html, 'html.parser')
+        hemi_dict['image_url'] = 'https://marshemispheres.com/'+str(hemi_soup.find('img', class_='wide-image')['src'])
+        hemisphere_image_urls.append(hemi_dict)
+
+
+    # # Quit the browser after scraping
     browser.quit()
 
+    scraped_data = {
+        "news":news, 
+        "featured_image": image_url,
+        "html_table":html_table,
+        "hemisphere":hemisphere_image_urls
+
+    }
     # Return results
-    return costa_data
+    return scraped_data
