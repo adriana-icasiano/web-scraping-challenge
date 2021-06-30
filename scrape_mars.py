@@ -14,7 +14,8 @@ def scrape():
     # Visit visitcostarica.herokuapp.com
     url = 'https://redplanetscience.com'
     browser.visit(url)
-
+    browser.visit(url)
+    
     time.sleep(1)
 
     # Scrape page into Soup
@@ -30,8 +31,6 @@ def scrape():
     
         headline = result.find('div', class_='content_title').text
         paragraph = result.find('div', class_='article_teaser_body').text
-        print(headline)
-        print(paragraph)
         news['headline'].append(headline)
         news['paragraph'].append(paragraph)
     
@@ -59,13 +58,11 @@ def scrape():
     new_header = df.iloc[0]
     df = df[1:]
     df.columns = new_header
-    df.set_index('Mars - Earth Comparison', inplace = True)
-
-
+    
     # Convert dataframe to html table, and store as variable
-    html_table = df.to_html()
+    html_table = df.to_html(index = False)
 
-
+    # Get Mars Hemisphere images
     url = 'https://marshemispheres.com/'
     browser.visit(url)
     
@@ -92,8 +89,8 @@ def scrape():
     scraped_data = {
         "news":news, 
         "featured_image": image_url,
-        "html_table":html_table,
-        "hemisphere":hemisphere_image_urls
+        "html_table": html_table,
+        "hemisphere": hemisphere_image_urls
 
     }
     # Return results
