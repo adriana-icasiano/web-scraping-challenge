@@ -8,6 +8,7 @@ This assignment requires web application that scrapes various websites for data 
 ![final_app.png](https://github.com/adriana-icasiano/web-scraping-challenge/blob/main/image/scrape_app_screenshot.PNG)
 
 
+## Below are the steps performed to create the final scraping website pictured above.
 ## Step 1 - Scraping
 
 Complete initial scraping using Jupyter Notebook, BeautifulSoup, Pandas, and Requests/Splinter.
