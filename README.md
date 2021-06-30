@@ -1,9 +1,9 @@
 # Web Scraping Homework - Mission to Mars
 
 
-This assignment requires web application that scrapes various websites for data related to the Mission to Mars and displays the information in a single HTML page. The following outlines what you need to do.
+This assignment requires the building of web application that scrapes various websites for data related to the Mission to Mars and displays the information in a single HTML page.
 
-## Final scraping website 
+## Final Website 
 
 ![final_app.png](https://github.com/adriana-icasiano/web-scraping-challenge/blob/main/image/scrape_app_screenshot.PNG)
 
