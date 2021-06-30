@@ -59,6 +59,8 @@ def scrape():
     new_header = df.iloc[0]
     df = df[1:]
     df.columns = new_header
+    df.set_index('Mars - Earth Comparison', inplace = True)
+
 
     # Convert dataframe to html table, and store as variable
     html_table = df.to_html()
