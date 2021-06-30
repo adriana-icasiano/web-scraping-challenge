@@ -3,8 +3,9 @@
 
 This assignment requires web application that scrapes various websites for data related to the Mission to Mars and displays the information in a single HTML page. The following outlines what you need to do.
 
+## Final scraping website 
 
-![final_app_part1.png](Images/final_app.png)
+![final_app.png](https://github.com/adriana-icasiano/web-scraping-challenge/blob/main/image/scrape_app_screenshot.PNG)
 
 
 ## Step 1 - Scraping
